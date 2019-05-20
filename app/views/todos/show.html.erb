@@ -1,0 +1,14 @@
+<h1>Showing a todo</h1>
+<% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+  <% end %>
+  
+  <p>
+  	id: <%= @todo.id %>  	
+  </p>
+  <p>
+  	name: <%= @todo.name %>  	
+  </p>
+  <p>
+  	description: <%= @todo.description %>
+  </p>
