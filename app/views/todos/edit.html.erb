@@ -14,6 +14,10 @@
 
 <%= form_for @todo, url: {action: "update"}, html: {class: "nifty_form"} do |f| %>
   <p>
+	<%= f.label :id %><br/>
+    <%= f.text_field :id %>  
+  </p>
+  <p>
     <%= f.label :name %><br/>
     <%= f.text_field :name %>  
   </p>
@@ -23,5 +27,8 @@
   </p>
   <p>
     <%= f.submit "Update" %>
-  </p>
+    <%= f.submit "Delete" %>
+    
+  </p>  
 <% end %>
+

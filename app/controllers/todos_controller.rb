@@ -1,5 +1,6 @@
 class TodosController < ApplicationController
-  before_action :set_todo, only: [:edit, :update, :show, :destroy]
+  #before_action :set_todo, only: [:edit, :update, :show, :destroy]
+  before_action only: [:edit, :update, :show, :destroy]
     
   def new
     #@todo - instance variable visible on view and controller
@@ -19,8 +20,7 @@ class TodosController < ApplicationController
     
   end
   
-  def show    
-         
+  def show             
     #@todo = Todo.find(params[:id]) 
     #err
     #ActiveRecord::RecordNotFound in TodosController#show
@@ -35,12 +35,19 @@ class TodosController < ApplicationController
   end 
 
   def update
+    @todo = Todo.find(params[:todo][:id])
+    if (params[:commit] == "Update")           
       if @todo.update(todo_params)
         flash[:notice] = "Todo was successfully updated"
         redirect_to todos_path(@todo)
       else
         render 'edit'
       end
+    elsif params[:commit] == "Delete"      
+      @todo.destroy 
+      flash[:notice] = "Todo was deleted successfully"   
+      redirect_to "/todos/index"
+    end
   end
   
   def index
@@ -48,16 +55,25 @@ class TodosController < ApplicationController
   end
     
   def destroy
-      @todo.destroy
-      flash[:notice] = "Todo was deleted successfully"
-      redirect_to todos_path
-    end
+    @todo = Todo.find(params[:format])
+    @todo.destroy
+    flash[:notice] = "Todo was deleted successfully"    
+    redirect_back(fallback_location: root_path)
+  end
+  
+  def delete
+     @todo = Todo.find(params[:format])
+     @todo.destroy
+     flash[:notice] = "Todo was deleted successfully"
+     #redirect_to todos_path
+     redirect_back(fallback_location: root_path)
+   end
   
   private
     
-    def set_todo
-      @todo = Todo.find(params[:id])
-    end
+#    def set_todo
+#      @todo = Todo.find(params[:format])
+#    end
     
     def todo_params 
       params.require(:todo).permit(:name, :description)
