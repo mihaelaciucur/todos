@@ -1,0 +1,3 @@
+http://localhost:3000/todos/index
+http://localhost:3000/todos/edit
+http://localhost:3000/todos/new
