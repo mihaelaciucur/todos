@@ -17,3 +17,6 @@
   </p>
   
   <p><a href="/todos/edit.<%= @todo.id %>">edit</a></p>
+  
+  <%= link_to "Edit this todo", edit_todos_path(@todo) %> |
+  <%= link_to "Back to todos listing", todos_index_path %>

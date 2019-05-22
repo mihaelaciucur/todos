@@ -1,6 +1,5 @@
 class TodosController < ApplicationController
-  #before_action :set_todo, only: [:edit, :update, :show, :destroy]
-  before_action only: [:edit, :update, :show, :destroy]
+  before_action :set_todo, only: [:edit, :show, :destroy]
     
   def new
     #@todo - instance variable visible on view and controller
@@ -11,7 +10,7 @@ class TodosController < ApplicationController
     @todo = Todo.new(todo_params)
     if @todo.save      
       # save post
-         flash[:notice] = "Todo was created successfully created"
+         flash[:notice] = "Todo was successfully created"
          redirect_to todos_path(@todo) 
          # redirect_to @post 
     else
@@ -27,11 +26,11 @@ class TodosController < ApplicationController
     #Couldn't find Todo without an ID   
     
     # why only format is working?
-    @todo = Todo.find(params[:format])
+    #@todo = Todo.find(params[:format])
   end
   
   def edit 
-    @todo = Todo.find(params[:format])
+    #@todo = Todo.find(params[:format])
   end 
 
   def update
@@ -55,7 +54,7 @@ class TodosController < ApplicationController
   end
     
   def destroy
-    @todo = Todo.find(params[:format])
+   # @todo = Todo.find(params[:format])
     @todo.destroy
     flash[:notice] = "Todo was deleted successfully"    
     redirect_back(fallback_location: root_path)
@@ -71,9 +70,9 @@ class TodosController < ApplicationController
   
   private
     
-#    def set_todo
-#      @todo = Todo.find(params[:format])
-#    end
+    def set_todo
+     @todo = Todo.find(params[:format])
+    end
     
     def todo_params 
       params.require(:todo).permit(:name, :description)
