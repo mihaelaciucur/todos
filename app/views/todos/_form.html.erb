@@ -10,8 +10,10 @@
 </ul>
 <% end %>
 
+<%= actionurl = "create"  %>
+<%= actionurl = "update" unless nameBtn2.blank? %>
 
-<%= form_for @todo, url: {action: "update"}, html: {class: "nifty_form"} do |f| %>
+<%= form_for @todo, url: {action: actionurl}, html: {class: "nifty_form"} do |f| %>
   <p>	
     <%= f.hidden_field :id %>  
   </p>
