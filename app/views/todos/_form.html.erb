@@ -23,10 +23,11 @@
     <%= f.label :description %><br/>
     <%= f.text_area :description, size: "60x12" %>
   </p>
-  <p>
-  
-  
-  	<%= f.submit "Create a new todo" %>
+  <p>  
+   
+  	<%= f.submit nameBtn1 unless nameBtn1.blank? %>  	  	  
+  	<%= f.submit nameBtn2 unless nameBtn2.blank? %>
+  	
            
   </p>  
 <% end %>

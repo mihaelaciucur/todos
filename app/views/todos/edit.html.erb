@@ -12,22 +12,4 @@
 <% end %>
 
 
-<%= form_for @todo, url: {action: "update"}, html: {class: "nifty_form"} do |f| %>
-  <p>	
-    <%= f.hidden_field :id %>  
-  </p>
-  <p>
-    <%= f.label :name %><br/>
-    <%= f.text_field :name %>  
-  </p>
-  <p>
-    <%= f.label :description %><br/>
-    <%= f.text_area :description, size: "60x12" %>
-  </p>
-  <p>
-    <%= f.submit "Update" %>
-    <%= f.submit "Delete" %>
-    
-  </p>  
-<% end %>
-
+<%= render partial: 'form', locals: {nameBtn1: "Update", nameBtn2: "Delete"} %>
